@@ -1,0 +1,90 @@
+@media (max-width: 1160px) {
+    .suggested {
+      display: none;
+    }
+  }
+  
+  
+  @media screen and (min-width: 1160px) {
+    .suggested {
+      font-size: 14px;
+      margin-left: 72px;
+  
+      .suggested-logged-user {
+        display: flex;
+        flex-direction: row;
+        width: 312px;
+      }
+  
+      .suggested-logged-name {
+        display: flex;
+        line-height: 18px;
+      }
+      .suggested-logged-img {
+        display: flex;
+        object-fit: cover;
+        width: 57px;
+        height: 57px;
+        border-radius: 50%;
+      }
+  
+  
+      .suggested-header {
+        font-size: 14px;
+      }
+  
+      .suggested-option {
+        margin-top: 15.5px;
+        margin-left: 6px;
+        display: flex;
+        flex-direction: row;
+        width: 312px;
+      }
+  
+      .suggested-user-info {
+        display: flex;
+      }
+  
+      .suggested-user-img {
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+      }
+  
+      .suggested-user-name {
+        margin-left: 10px;
+      }
+  
+      .suggested-profile-follow {
+        padding-top: 10px;
+        margin-left: auto;
+        font-size: 12px;
+        color: #0099ff;
+        cursor: pointer;
+        &:hover {
+          color: #00436f;
+        }
+      }
+    }
+  
+    .insta-about {
+      margin-top: 32px;
+      margin-bottom: 22.5px;
+      color: #c7c7c7;
+      font-size: 12px;
+      margin-left: 3px;
+      p {
+        margin-top: 5px;
+      }
+    }
+  
+    .more {
+      margin-top: 8px;
+    }
+  
+    .insta-footer {
+      color: #c7c7c7;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+  }
