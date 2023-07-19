@@ -6,7 +6,7 @@ export async function getStories(req, res) {
     logger.debug('Getting Stories:', req.query)
     const filterBy = {
       txt: req.query.txt || '',
-      pageIdx: req.query.pageIdx || '',
+      pageIdx: req.query.pageIdx
 
     }
     const stories = await storyService.query(filterBy)
@@ -45,7 +45,7 @@ export async function addStory(req, res) {
 
 export async function updateStory(req, res) {
   try {
-    const {story} = req.body
+    const story = req.body
     const updatedStory = await storyService.update(story)
     res.json(updatedStory)
   } catch (err) {
@@ -67,7 +67,7 @@ export async function removeStory(req, res) {
 }
 
 export async function addStoryComment(req, res) {
-  const { loggedinUser } = req
+  const { loggedinUser }  = req
   try {
     const storyId = req.params.id
     const comment = {

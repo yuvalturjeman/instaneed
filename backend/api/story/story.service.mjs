@@ -6,14 +6,17 @@ const { ObjectId } = mongodb
 
 const PAGE_SIZE = 3
 
-
-async function query(filterBy) {
+async function query(filterBy={txt:''}) {
     try {
-        //todo : build criteria
-        // const criteria = _buildCriteria(filterBy)
+        const criteria = {
+            txt: { $regex: filterBy.txt, $options: 'i' }
+        }
         const collection = await dbService.getCollection('story')
-        var storyCursor = await collection.find()
+        var storyCursor = await collection.find(criteria)
 
+        if (filterBy.pageIdx !== undefined) {
+            storyCursor.skip(filterBy.pageIdx * PAGE_SIZE).limit(PAGE_SIZE)     
+        }
 
         const stories = storyCursor.toArray()
         return stories
@@ -23,22 +26,8 @@ async function query(filterBy) {
     }
 }
 
-// function _buildCriteria(filterBy) {
-//     var criteria = {}
-
-//     if (filterBy.username) {
-//         const regex = new RegExp(filterBy.username, 'i')
-//         criteria.$or = [
-//             { 'user.username': { $regex: regex } },
-            
-//         ];
-//     }
-//     return criteria
-// }
-
 async function getById(storyId) {
     try {
-        // const pipeLine = _aggregationPipeLine(storyId)
         const collection = await dbService.getCollection('story')
         const story = await collection.findOne({_id: ObjectId(storyId)})
         return story
@@ -47,38 +36,6 @@ async function getById(storyId) {
         throw err
     }
 }
-
-// function _aggregationPipeLine(storyId) {
-//     return [
-//         { $match: { _id: storyId } },
-//         {
-//             $lookup: {
-//                 from: 'user',
-//                 foreignField: '_id',
-//                 localField: 'host',
-//                 as: 'host',
-//             },
-//         },
-//         {
-//             $addFields: {
-//                 host: { $arrayElemAt: ['$host', 0] }
-//             }
-//         },
-//         {
-//             $project: {
-//                 'host.password': 0
-//             }
-//         },
-//         {
-//             $lookup: {
-//                 from: 'review',
-//                 foreignField: '_id',
-//                 localField: 'reviews',
-//                 as: 'reviews',
-//             },
-//         },
-//     ]
-// }
 
 async function remove(storyId) {
     try {
@@ -139,7 +96,6 @@ async function removeStoryComment(storyId, commentId) {
     }
 }
 
-
 export const storyService = {
     remove,
     query,
@@ -148,6 +104,4 @@ export const storyService = {
     update,
     removeStoryComment,
     addStoryComment
-    // addStayMsg,
-    // removeStayMsg
 }

@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
 
 import { authRoutes } from './api/auth/auth.routes.mjs'
 import { userRoutes } from './api/user/user.routes.mjs'
-import { messageRoutes } from './api/message/message.routes.mjs'
+// import { reviewRoutes } from './api/review/review.routes.mjs'
 import { storyRoutes } from './api/story/story.routes.mjs'
 import { setupSocketAPI } from './services/socket.service.mjs'
 
@@ -38,7 +38,7 @@ app.all('*', setupAsyncLocalStorage)
 
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
-app.use('/api/message', messageRoutes)
+// app.use('/api/review', reviewRoutes)
 app.use('/api/story', storyRoutes)
 setupSocketAPI(server)
 
