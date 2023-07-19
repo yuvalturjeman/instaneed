@@ -1,29 +1,29 @@
-export const SET_MESSAGES = 'SET_MESSAGES'
-export const ADD_MESSAGE = 'ADD_MESSAGE'
-export const REMOVE_MESSAGE = 'REMOVE_MESSAGE'
-export const UPDATE_MESSAGE = 'UPDATE_MESSAGE'
-export const NEW_MESSAGE = 'NEW_MESSAGE'
+export const SET_REVIEWS = 'SET_REVIEWS'
+export const ADD_REVIEW = 'ADD_REVIEW'
+export const REMOVE_REVIEW = 'REMOVE_REVIEW'
+export const UPDATE_REVIEW = 'UPDATE_REVIEW'
+export const NEW_REVIEW = 'NEW_REVIEW'
 
 const initialState = {
-  messages: [],
-  newMessage: false,
+  reviews: [],
+  newReview: false,
 }
 
-export function messageReducer(state = initialState, action = {}) {
+export function reviewReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case SET_MESSAGES:
-      return { ...state, messages: action.messages }
-    case ADD_MESSAGE:
-      return { ...state, messages: [...state.messages, action.message] }
-    case REMOVE_MESSAGE:
-      return { ...state, messages: state.messages.filter(message => message._id !== action.messageId) }
-      case NEW_MESSAGE:
-        return { ...state, newMessage: action }
-      case UPDATE_MESSAGE:
+    case SET_REVIEWS:
+      return { ...state, reviews: action.reviews }
+    case ADD_REVIEW:
+      return { ...state, reviews: [...state.reviews, action.review] }
+    case REMOVE_REVIEW:
+      return { ...state, reviews: state.reviews.filter(review => review._id !== action.reviewId) }
+      case NEW_REVIEW:
+        return { ...state, newReview: action }
+      case UPDATE_REVIEW:
       return {
         ...state,
-        messages: state.messages.map(message =>
-          message._id === action.message._id ? action.message : message
+        reviews: state.reviews.map(review =>
+          review._id === action.review._id ? action.review : review
         )}
     default:
       return state

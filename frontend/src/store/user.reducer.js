@@ -56,7 +56,7 @@ export const SET_WATCHED_USER = 'SET_WATCHED_USER'
 export const REMOVE_USER = 'REMOVE_USER'
 export const SET_USERS = 'SET_USERS'
 export const SET_SCORE = 'SET_SCORE'
-export const NEW_NOTIFICATION = 'NEW_NOTIFICATION'
+// export const NEW_NOTIFICATION = 'NEW_NOTIFICATION'
 const initialState = {
     count: 10,
     user: userService.getLoggedinUser(),
@@ -94,9 +94,9 @@ export function userReducer(state = initialState, action) {
         case SET_SCORE:
             newState = { ...state, user: { ...state.user, score: action.score } }
             break
-        case NEW_NOTIFICATION:
-            newState = { ...state, newNotification: action.message }
-            break
+        // case NEW_NOTIFICATION:
+        //     newState = { ...state, newNotification: action.message }
+        //     break
         default:
     }
     // For debug:

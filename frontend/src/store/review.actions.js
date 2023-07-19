@@ -1,23 +1,23 @@
-import { messageService } from '../services/review.service'
+import { reviewService } from '../services/review.service'
 import { store } from '../store/store.js'
-import { ADD_MESSAGE, REMOVE_MESSAGE, SET_MESSAGES,NEW_MESSAGE } from './review.reducer'
+import { ADD_REVIEW, REMOVE_REVIEW, SET_REVIEWS,NEW_REVIEW } from './review.reducer'
 import { SET_SCORE, SET_WATCHED_USER } from './user.reducer'
 
 // Action Creators
-export function getActionRemoveMessage(messageId) {
-  return { type: REMOVE_MESSAGE, messageId }
+export function getActionRemoveReview(reviewId) {
+  return { type: REMOVE_REVIEW, reviewId }
 }
-export function getActionAddMessage(message) {
-  return { type: ADD_MESSAGE, message }
+export function getActionAddReview(review) {
+  return { type: ADD_REVIEW, review }
 }
 export function getActionSetWatchedUser(user) {
   return { type: SET_WATCHED_USER, user }
 }
 
-export async function loadMessages() {
+export async function loadReviews() {
   try {
-    const messages = await messageService.query()
-    store.dispatch({ type: SET_MESSAGES, messages })
+    const reviews = await reviewService.query()
+    store.dispatch({ type: SET_REVIEWS, reviews })
 
   } catch (err) {
     console.log('ReviewActions: err in loadReviews', err)
@@ -25,10 +25,10 @@ export async function loadMessages() {
   }
 }
 
-export async function addMessage(message) {
+export async function addReview(review) {
   try {
-    const addedMessage = await messageService.add(message)
-    store.dispatch(getActionAddMessage(addedMessage))
+    const addedReview = await reviewService.add(review)
+    store.dispatch(getActionAddReview(addedReview))
     // const { score } = addedMessage.byUser
     // store.dispatch({ type: SET_SCORE, score })
   } catch (err) {
@@ -37,10 +37,10 @@ export async function addMessage(message) {
   }
 }
 
-export async function removeMessage(messageId) {
+export async function removeReview(reviewId) {
   try {
-    await messageService.remove(messageId)
-    store.dispatch(getActionRemoveMessage(messageId))
+    await reviewService.remove(reviewId)
+    store.dispatch(getActionRemoveReview(reviewId))
   } catch (err) {
     console.log('ReviewActions: err in removeReview', err)
     throw err

@@ -82,16 +82,16 @@ export async function loadUser(userId) {
     }
 }
 
-export function gotNewNotification(message) {
-    console.log(message)
-    try {
-        store.dispatch({
-            type: NEW_NOTIFICATION,
-            message
-        })
-    } catch(err) {
-        console.log('Notification error', err)
+// export function gotNewNotification(message) {
+//     console.log(message)
+//     try {
+//         store.dispatch({
+//             type: NEW_NOTIFICATION,
+//             message
+//         })
+//     } catch(err) {
+//         console.log('Notification error', err)
 
-    }
-    // return { type: NEW_NOTIFICATION, action: review }
-}
+//     }
+//     // return { type: NEW_NOTIFICATION, action: review }
+// }
