@@ -142,9 +142,9 @@ export function SideBar({ users }) {
                 </div>
 
 
-                <div className="create-story">
+                <div  className="create-story">
                     {showModal && (
-                        <ul className="modal">
+                        <ul onClick={closeModal} className="modal">
                             <p onClick={closeModal}>cancel</p>
                         </ul>
                     )}
