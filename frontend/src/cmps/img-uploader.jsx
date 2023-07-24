@@ -27,27 +27,18 @@ export function ImgUploader({ onUploaded = null,story, user,}) {
   }
 
   return (
-    // <div className="upload-preview">
-    //   {imgData.imgUrl && <img  src={imgData.imgUrl} />}
-      
-    //   <input className="img-input hidden" type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />
-    // </div>
     <div className="img-uploader">
-      
-      <main >
-{/* <div> */}
-
-        {imgData.imgUrl && <img src={imgData.imgUrl} />}
-{/* </div> */}
-
-        <section className='uploader-icon'>{uploadBgImg}</section>
-        <div className="uploader-btns">
-        <button className="input-btn"><span>Select from computer</span> 
-          <input className='img-input' type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />
-        </button>
-
-        </div>
-      </main>
-    </div>
+    <main className="img-file">
+      {imgData.imgUrl && <img src={imgData.imgUrl} />}
+      <section className='uploader-icon'>{uploadBgImg}</section>
+          <p className="drag">Drag photos and videos here</p>
+      <div className="uploader-btns">
+        <label htmlFor="imgUpload" className="input-btn">
+          <span>Select from computer</span>
+        </label>
+        <input className='img-input' type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />
+      </div>
+    </main>
+  </div>
   )
 }

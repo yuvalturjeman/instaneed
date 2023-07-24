@@ -61,7 +61,7 @@
 
 // Buttons
 
-@mixin btn($type: regular, $bg: $clr1, $clr: $clr8, $padding: em(12px) em(16px), $hover: darken($bg, 18%)) {
+@mixin btn($type: regular, $bg: $clr7, $clr: $clr8, $padding: em(12px) em(16px), $hover: darken($bg, 18%)) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -103,7 +103,7 @@
         font-family: Circular-Light, sans-serif;
 
         &:hover {
-            background-color: $clr1;
+            background-color: $clr7;
             color: $clr3;
         }
     }

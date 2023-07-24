@@ -167,7 +167,7 @@ export function SideBar({ users }) {
                                         <ImgUploader onUploaded={onUploaded} initialImgUrl='' />
                                     </div>
 
-                                    <div className="text-editor">
+                                    {/* <div className="text-editor">
 
                                         <label htmlFor="text">
 
@@ -180,7 +180,7 @@ export function SideBar({ users }) {
                                             />
                                         </label>
 
-                                    </div>
+                                    </div> */}
 
 
                                 </div>
