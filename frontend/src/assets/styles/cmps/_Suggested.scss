@@ -8,25 +8,44 @@
   @media screen and (min-width: 1160px) {
     .suggested {
       font-size: 14px;
-      margin-left: 72px;
+      padding-left: 4.2vw ;
+      padding-top: 3.2vh;
       
       .suggested-logged-user {
-        width: 312px;
+        width: 318px;
         display: flex;
-        flex-direction: row;
+        padding-bottom: 15px;
+        .logged-user-info{
+          display: flex;
+          flex-direction: row;
+        }
+        .suggested-logged-img {
+          display: flex;
+          // object-fit: cover;
+          width: 57px;
+          height: 57px;
+          border-radius: 50%;
+        }
+        .suggested-logged-name {
+          display: flex;
+          padding-left: 15px;
+          line-height: 36px;
+        }
+        .suggested-logged-switch {
+          padding-top: 10px;
+          // margin-left: 10px ;
+          line-height: 38px;
+          display: flex;
+          margin-left: auto;
+          font-size: 12px;
+          color: #0099ff;
+          cursor: pointer;
+          &:hover {
+            color: #00436f;
+          }
+        }
       }
       
-      .suggested-logged-img {
-        display: flex;
-        object-fit: cover;
-        width: 57px;
-        height: 57px;
-        border-radius: 50%;
-      }
-      .suggested-logged-name {
-        display: flex;
-        line-height: 18px;
-      }
   
   
       .suggested-header {

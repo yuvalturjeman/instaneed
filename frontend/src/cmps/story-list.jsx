@@ -11,7 +11,7 @@ export function StoryList({ stories }) {
 
 
     return (
-    <section className="story-list">
+    <section className="stories">
        
     {stories.map(story => <div
         className="story"

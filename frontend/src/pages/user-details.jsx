@@ -69,9 +69,9 @@ export function UserDetails() {
                     </section>
                 )}
                 
-                <section className="profile-info">
+                <div className="profile-info">
                     <div className="profile-info-header">
-                        <p>{user.username}</p>
+                        <p className="profile-name">{user.username}</p>
                         <div>
                         <button onClick={onUpdateUser} className="profile-edit-btn">Edit profile</button>
                 
@@ -92,16 +92,16 @@ export function UserDetails() {
                     <div className="user-name">
                         <p>{user.fullname}</p>
                         </div>
-                </section>
+                </div>
                 
             </head>
             <div className="profile-head">
                 
-                <p>{postsIcon}<span> POSTS</span></p>
+                <a>{postsIcon}<span> POSTS</span></a>
                 
                 
-                <p>{savedPostsIcon}<span> SAVED</span></p>
-                <p>{taggedIcon}<span> TAGGED</span></p>
+                <a>{savedPostsIcon}<span> SAVED</span></a>
+                <a>{taggedIcon}<span> TAGGED</span></a>
             </div>
             </div>
 

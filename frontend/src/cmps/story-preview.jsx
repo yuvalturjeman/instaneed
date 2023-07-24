@@ -208,10 +208,10 @@ export function StoryPreview({ story, onRemoveStory, onUpdateStory }) {
           <CommentAdd story={story} />
         </div>
       </div>
-      <div className="actions">
+      {/* <div className="actions">
 
 
-      </div>
+      </div> */}
     </div>
   );
 } 

@@ -4,8 +4,13 @@
         display: flex;
 
         head {
-            height: 42.2vh;
+            padding-top: 3.5vh;
+            height: 45.65vh;
+            padding-right: 15.5vw;
             border-bottom: 1px solid lightgray;
+            .profile-name {
+                width: 6.25vw;
+            }
         }
         .profile-container-page {
             margin-left: 14.3vw;
@@ -106,8 +111,13 @@
     padding-left: 18.65vw;
     margin-top: 17px;
     display: flex;
-p {
+a {
     margin-right: 3.7vw;
+    :active{
+        text-decoration: overline;
+}
+    
+    
 }
     span {
         margin-left: 4px;
