@@ -34,13 +34,6 @@ export const userService = {
 window.cs = userService
 
 
-// function saveLocalUser(user) {
-//     // user = {_id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score}
-//     // sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
-//     // return user
-//     localStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
-//     return user
-// }
 
 async function saveUser(user) {
     var savedUser
@@ -63,11 +56,7 @@ async function login({ username, password }) {
         _setLoggedinUser(user)
         return user
     }
-    // const user = await httpService.post('auth/login', userCred)
-    // if (user) {
-    //     socketService.login(user._id)
-    //     return saveLocalUser(user)
-    // }
+
 }
 
 async function getByUserName(username) {
@@ -78,22 +67,14 @@ async function getByUserName(username) {
 
 async function logout() {
     storageService.removeUserFromLocalStorage()
-    // storageService.remove(STORAGE_KEY_LOGGEDIN_USER)
-    // socketService.logout()
-    // return await httpService.post('auth/logout')
+
 }
 
 function signup(user) {
-    // const user = { username, password, fullname, activities: [] }
+
     return storageService.post(STORAGE_KEY_USERS, user)
         .then(_setLoggedinUser)
 }
-
-
-// async function query() {
-//     var users = await storageService.query(STORAGE_KEY_LOGGEDIN_USER)
-//     return users
-// }
 
 async function query(filterBy = { fullName: '', username: '' }) {
     var users = await storageService.query(STORAGE_KEY_USERS).then(users => users)
@@ -106,18 +87,6 @@ async function query(filterBy = { fullName: '', username: '' }) {
         users = users.filter(user => regExp.test(user.fullName))
     }
     return users
-
-    // var users = await storageService.query('user').then(users => users)
-    // if (filterBy.txt) {
-    //     const regex = new RegExp(filterBy.txt, 'i')
-    //     users = users.filter(user => {
-    //         return regex.test(user.username)
-    //     })
-    //     // users = users.filter(user => regex.test(user.unername) || regex.test(car.description))
-    // }
-    // return users
-    // console.log('get logged in user', storageService.query(STORAGE_KEY_LOGGEDIN_USER))
-    // return httpService.get(`user`)
 }
 
 function getById(userId) {
@@ -128,55 +97,22 @@ async function remove(userId) {
     await storageService.remove(STORAGE_KEY_USERS, userId)
 }
 
-// async function save(user) {
-//     var savedUser
-//     if (user._id) {
-//         savedUser = await storageService.put(STORAGE_KEY_LOGGEDIN_USER, user)
-//     } else {
-//         savedUser = await storageService.post(STORAGE_KEY_LOGGEDIN_USER, user)
-//     }
-//     return savedUser
-// }
-
 function getLoggedinUser() {
     return utilService.loadFromStorage(STORAGE_KEY_LOGGEDIN_USER)
     // return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
 function getEmptyUser() {
+    console.log('from user local ');
     return {
         fullName: "",
         username: "",
         password: "",
-        mail: '', //not in the starter
-        userBio: '', //not in the starter
-        userImg: { url: 'https://res.cloudinary.com/duxmabf4n/image/upload/v1686594941/p5igjah3vvmmfpdhs2e5.jpg', style: { filter: 'none' } },
-        followingId: [], //provided in the starter as: following
-        followersId: [], //provided in the starter as: followers
-        following: [
-        ],
-        followers: [
-        ],
-        savedStories: [], //provided in the starter as savedStoryIds
-        taggedStories: [], //not in the starter
+        imgUrl: { url: 'https://res.cloudinary.com/duxmabf4n/image/upload/v1686594941/p5igjah3vvmmfpdhs2e5.jpg'},
         userStories: [] //not in the starter
     }
 }
-// {
-//     fullname: "",
-//     username: "",
-//     password: "",
-//     userBio: '',
-//      userImg: {
-//         url: 'https://res.cloudinary.com/duxmabf4n/image/upload/v1686594941/p5igjah3vvmmfpdhs2e5.jpg',
-//         style: { filter: 'none' }
-//     },
-//     followingId: [],
-//     followersId: [],
-//     savedStories: [],
-//     taggedStories: [],
-//     userStories: []
-// }
+
 
 
 function queryComments(userId) {

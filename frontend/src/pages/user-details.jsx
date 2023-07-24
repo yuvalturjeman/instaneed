@@ -8,7 +8,7 @@ import { userService } from '../services/user.service'
 import { ImgUploader } from '../cmps/img-uploader'
 import { SideBar } from '../cmps/side-bar'
 import { postsIcon,savedPostsIcon, settingsIcon, taggedIcon, userPlusIcon } from '../cmps/icons'
-
+import UserDefault from '../assets/img/user-default.jpg'
 export function UserDetails() {
     const user = useSelector(storeState => storeState.userModule.user)
     const users = useSelector(storeState => storeState.userModule.users)
@@ -65,7 +65,7 @@ export function UserDetails() {
             <head className='user-details'>
                 {user.imgUrl && (
                     <section className="profile-photo">
-                        <img src={user.imgUrl} />
+                        <img src={UserDefault} />
                     </section>
                 )}
                 

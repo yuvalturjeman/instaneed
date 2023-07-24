@@ -172,6 +172,7 @@ function getEmptyUser() {
         fullname: "",
         username: "",
         password: "",
+        // imgUrl:  'https://res.cloudinary.com/duxmabf4n/image/upload/v1686594941/p5igjah3vvmmfpdhs2e5.jpg',
         imgUrl:  'https://res.cloudinary.com/duxmabf4n/image/upload/v1686594941/p5igjah3vvmmfpdhs2e5.jpg',
     }
 }
