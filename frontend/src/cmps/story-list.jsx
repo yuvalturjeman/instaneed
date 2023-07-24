@@ -1,6 +1,7 @@
 import { StoryPreview } from "./story-preview"
 import { addStory } from "../store/story.actions";
 import { userService } from "../services/user.service";
+import { CarouselComponent } from "./img-preview-carousel";
 
 
 export function StoryList({ stories }) {
@@ -11,6 +12,7 @@ export function StoryList({ stories }) {
 
     return (
     <section className="story-list">
+       
     {stories.map(story => <div
         className="story"
         key={story._id}>

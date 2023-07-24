@@ -19,7 +19,7 @@
       .main-side-bar {
         position: fixed;
         margin-top: 37px;
-        margin-left: 26px;
+        margin-left: 24px;
       }
       .side-bar-icons {
         margin-top: 49px;
@@ -33,15 +33,27 @@
       .desc {
         display: none;
       }
+   
+        
+        .profile-img {
+          width: 27px;
+          height: 27px;
+          border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid black;
+        }
+
+        .logout-icon {
+          margin-top: 27.5vh;
+          display: flex;
+        }
+   
     }
     
     
     @media (min-width: 1265px) {
       .side-bar {
         flex: 0 0 245px;
-      }
-      .main-side-bar {
-        margin-top: 43px;
       }
       .side-bar-logo {
         display: inline;
@@ -50,13 +62,28 @@
         display: none;
       }
       .desc-logo {
-        display: inline;
-        font-size: 23px;
+        display: flex;
+        height: 30px;
+        width: 100px;
+      }
+      .section {
+        display: flex;
+        flex-direction: row;
+      }
+      .side-bar-icon {
+        display: flex;
       }
       .desc {
-        display: inline;
-        margin-left: 17px;
+        display:inline ;
+        line-height: 25px;
+        margin-left: 17px; 
       }
+      NavLink {
+        display: flex;
+      }
+      
+      
+      
     }
     
   

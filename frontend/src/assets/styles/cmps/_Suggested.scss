@@ -4,28 +4,28 @@
     }
   }
   
-  
+
   @media screen and (min-width: 1160px) {
     .suggested {
       font-size: 14px;
       margin-left: 72px;
-  
+      
       .suggested-logged-user {
+        width: 312px;
         display: flex;
         flex-direction: row;
-        width: 312px;
       }
-  
-      .suggested-logged-name {
-        display: flex;
-        line-height: 18px;
-      }
+      
       .suggested-logged-img {
         display: flex;
         object-fit: cover;
         width: 57px;
         height: 57px;
         border-radius: 50%;
+      }
+      .suggested-logged-name {
+        display: flex;
+        line-height: 18px;
       }
   
   

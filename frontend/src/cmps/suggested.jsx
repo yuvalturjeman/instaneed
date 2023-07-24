@@ -8,21 +8,25 @@ export function Suggested({ users }) {
     console.log('users from suggested', users);
 
 
-
     return (
 
         <ul className="suggested">
-            
+
             <section className="suggested-logged-user">
                 {loggedUser &&
-                        <Link to={`/users/:user/:${loggedUser._id}`} >
+                    <Link to={`/users/:user/:${loggedUser._id}`} >
+                        
                             {loggedUser.imgUrl && <span><img className="suggested-logged-img" src={loggedUser.imgUrl} /></span>}
-                            <p className="suggested-logged-name">{loggedUser.fullname}</p>
-                        </Link>
+                        
+                        <p className="suggested-logged-name">{loggedUser.fullname}</p>
+                        
+                        
+                    </Link>
+
                 }
-                </section>
+            </section>
             <span className="suggested-header">Suggested for you:</span>
-            
+
             {users.map(user =>
                 <SuggestedPreview
                     key={user._id}

@@ -1,7 +1,123 @@
-.user-details {
-    .user-img {
-        height: 200px;
-        width: 200px;
-        background-size: contain;
+@media (max-width: 1920px) {
+    
+    .profile-container {
+        display: flex;
+
+        head {
+            height: 42.2vh;
+            border-bottom: 1px solid lightgray;
+        }
+        .profile-container-page {
+            margin-left: 14.3vw;
+            margin-right: 14.3vw;
+            
+
+        }
+        .user-details {
+            display: flex;
+            flex-direction: row;
+            padding-left: 4vw;
+        
+
+        .profile-photo {
+            width: 9vw;
+            height: 150px;
+        }
+
+        .profile-info {
+            margin-left: 6vw;
+        }
+
+        .profile-info-header {
+            display: flex;
+            line-height: 30px;
+            margin-top: 5px;
+            p{
+                font-size: 20px;
+                line-height: 38px;
+            }
+            .profile-edit-btn {
+
+                display: flex;
+                
+                background-color: lightgray;
+               
+                
+                font-size: 14px;
+                color: black;
+                height: 30px;
+                margin-left: 2.5vw;
+                width: 102px;
+                padding-top: 14px;
+            }
+            .profile-view-btn {
+                display: flex;
+                text-align: center;
+                background-color: lightgray;
+                font-size: 14px;
+                color: black;
+                height: 30px;
+                margin-left: 0.7vw;
+                width: 112px;
+                padding-top: 11px;
+                padding-left: 6px;
+    
+            }
+            
+        }
+
+        
+
+        
+        .settings-icon {
+            margin-left: 0.7vw;
+            line-height: 5vh;
+        }
+
+        .user-information {
+            display: flex;
+            flex-direction: row;
+            
+            margin-top: 12px;
+
+            p {
+                margin-right: 3.7vw;
+
+                font-size: 15px;
+            }
+            p:last-child {
+                margin-left: 0.4vw;
+            }
+        }
+
+        .user-name {
+            margin-top: 2vh;
+            // margin-left: 3vw;
+        }
+
+
+    }
+    .new-highlight {
+        width: 50vw;
     }
 }
+
+.profile-head{
+    padding-left: 18.65vw;
+    margin-top: 17px;
+    display: flex;
+p {
+    margin-right: 3.7vw;
+}
+    span {
+        margin-left: 4px;
+        font-size: 12px;
+    }
+}
+
+.profile-stories {
+    height: 100vh;
+}
+
+}
+

@@ -21,8 +21,6 @@ async function query(filterBy = {}) {
         users = users.map(user => {
             delete user.password
             user.createdAt = ObjectId(user._id).getTimestamp()
-            // Returning fake fresh data
-            // user.createdAt = Date.now() - (1000 * 60 * 60 * 24 * 3) // 3 days ago
             return user
         })
         return users
@@ -39,13 +37,6 @@ async function getById(userId) {
         const user = await collection.findOne({ _id: ObjectId(userId) })
         delete user.password
         return user
-        // user.givenReviews = await reviewService.query({ byUserId: ObjectId(user._id) })
-        // user.givenReviews = user.givenReviews.map(review => {
-        //     delete review.byUser
-        //     return review
-        // })
-
-        // return user
     } catch (err) {
         logger.error(`while finding user by id: ${userId}`, err)
         throw err
@@ -79,7 +70,7 @@ async function update(user) {
             _id: ObjectId(user._id), // needed for the returnd obj
             fullname: user.fullname,
             username: user.username,
-            userImg: user.imgUrl
+            imgUrl: user.imgUrl
 
         }
         const collection = await dbService.getCollection('user')
@@ -98,7 +89,7 @@ async function add(user) {
             username: user.username,
             password: user.password,
             fullname: user.fullname,
-            imgUrl: user.imgUrl,
+            imgUrl: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
 
         }
         const collection = await dbService.getCollection('user')

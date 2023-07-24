@@ -66,7 +66,7 @@ export function StoryIndex() {
             </div>
             
             <div className="main-content">
-            <AppHeader/>
+            {/* <AppHeader/> */}
                 <StoryList
                     stories={stories}
                 />

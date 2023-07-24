@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { uploadService } from '../services/upload.service'
+import { uploadBgImg } from './icons';
 
-export function ImgUploader({ onUploaded = null, initialImgUrl ,story, user}) {
+export function ImgUploader({ onUploaded = null,story, user,}) {
  
   const [imgData, setImgData] = useState({
-    imgUrl: initialImgUrl,
+    imgUrl: null,
     // height: 500,
     // width: 500,
   })
@@ -26,9 +27,27 @@ export function ImgUploader({ onUploaded = null, initialImgUrl ,story, user}) {
   }
 
   return (
-    <div className="upload-preview">
-      {imgData.imgUrl && <img  src={imgData.imgUrl} alt=''  />}
-      <input className="download" type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />
+    // <div className="upload-preview">
+    //   {imgData.imgUrl && <img  src={imgData.imgUrl} />}
+      
+    //   <input className="img-input hidden" type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />
+    // </div>
+    <div className="img-uploader">
+      
+      <main >
+{/* <div> */}
+
+        {imgData.imgUrl && <img src={imgData.imgUrl} />}
+{/* </div> */}
+
+        <section className='uploader-icon'>{uploadBgImg}</section>
+        <div className="uploader-btns">
+        <button className="input-btn"><span>Select from computer</span> 
+          <input className='img-input' type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />
+        </button>
+
+        </div>
+      </main>
     </div>
   )
 }

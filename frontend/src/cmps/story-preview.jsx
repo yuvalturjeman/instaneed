@@ -9,7 +9,6 @@ import { ImgUploader } from './img-uploader'
 
 
 
-
 export function StoryPreview({ story, onRemoveStory, onUpdateStory }) {
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
   console.log('story', story);
@@ -89,6 +88,7 @@ export function StoryPreview({ story, onRemoveStory, onUpdateStory }) {
 
 
 
+
   const firstComment = story.comments[0];
 
 
@@ -106,12 +106,11 @@ export function StoryPreview({ story, onRemoveStory, onUpdateStory }) {
           <a className="dots" onClick={openModal}>{dotsIcon}</a>
 
         </div>
-        <div className="options">
+        <div  className="options">
           {showModal && (
-            <ul className="modal">
+            <ul  className="modal">
               <p className="option">Report</p>
               <p className="option">Unfollow</p>
-
               <p className="option">Add to favorites</p>
               <p className="option">Go to post</p>
               <p className="option">Share to</p>

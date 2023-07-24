@@ -5,7 +5,7 @@ import { store } from '../store/store.js'
 
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { LOADING_DONE, LOADING_START } from "./system.reducer.js";
-import {NEW_NOTIFICATION, REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from "./user.reducer.js";
+import {NEW_NOTIFICATION, ADD_USER ,REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER, UPDATE_USER } from "./user.reducer.js";
 
 export async function loadUsers() {
     try {
@@ -27,6 +27,21 @@ export async function removeUser(userId) {
         console.log('UserActions: err in removeUser', err)
     }
 }
+
+export async function addUser(userCred) {
+    try {
+        const savedUser = await userService.signup(userCred)
+        store.dispatch({
+            type: ADD_USER,
+            user: savedUser
+        })
+        return savedUser
+    } catch (err) {
+        console.log('Cannot add user', err)
+        throw err
+    }
+}
+
 
 export async function login(credentials) {
     try {
@@ -82,16 +97,24 @@ export async function loadUser(userId) {
     }
 }
 
-// export function gotNewNotification(message) {
-//     console.log(message)
-//     try {
-//         store.dispatch({
-//             type: NEW_NOTIFICATION,
-//             message
-//         })
-//     } catch(err) {
-//         console.log('Notification error', err)
+export async function updateUser(user) {
+    try {
+        const updatedUser = await userService.saveUser(user)
+        console.log('updatedUser', updatedUser)
+        store.dispatch({
+            type: UPDATE_USER,
+            user: updatedUser
+        })
+        return updateUser
+    } catch (err) {
+        console.log('Cannot update logged user (id: ' + user._id + ')', err)
+        throw err
+    }
+}
 
-//     }
-//     // return { type: NEW_NOTIFICATION, action: review }
-// }
+export function getActionUpdateUser(user) {
+    return {
+        type: UPDATE_USER,
+        user
+    }
+}
