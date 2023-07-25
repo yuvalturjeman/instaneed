@@ -44,8 +44,6 @@ async function save(story) {
   if (story._id) {
     savedStory = await storageService.put(STORAGE_KEY, story)
   } else {
-
-
     savedStory = await storageService.post(STORAGE_KEY, story)
   }
   return savedStory
@@ -56,7 +54,7 @@ function getEmptyStory() {
   return {
     _id:"",
       txt: "",
-    imgUrls: "https://images.pexels.com/photos/17243147/pexels-photo-17243147.jpeg?auto=compress&cs=tinysrgb&w=600",
+    imgUrls: "",
     by: {
       _id: user._id,
             fullname: user.fullname,
@@ -106,9 +104,6 @@ function getEmptyComment() {
   }
 }
 
-
-
-
 function _createStories() {
   gStories = utilService.loadFromStorage(STORAGE_KEY)
   if (gStories && gStories.length > 0) return
@@ -116,15 +111,6 @@ function _createStories() {
   _saveStories()
 }
 
-
 function _saveStories() {
   utilService.saveToStorage(STORAGE_KEY, stories)
 }
-
-
-// function _createStories() {
-//   gStories = utilService.loadFromStorage(STORAGE_KEY)
-//   if (gStories && gStories.length > 0) return
-//   gStories = stories
-//   _saveStories()
-// }

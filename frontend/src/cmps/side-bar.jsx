@@ -1,6 +1,6 @@
 import { NavLink, Link, useNavigate } from 'react-router-dom'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ImgUploader } from '../cmps/img-uploader'
 import { searchIcon, exploreIcon, homeIcon, reelsIcon, messagesIcon, notificationsIcon, createIcon, instaIcon, sideMore } from './icons'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
@@ -15,10 +15,9 @@ export function SideBar({ users }) {
     const [showModal, setShowModal] = useState(false);
     const [showEditor, setShowEditor] = useState(false)
     const [text, setText] = useState('');
-    const [uploadedImage, setUploadedImage] = useState([]);
+    const [uploadedImage, setUploadedImage] = useState('');
     const navigate = useNavigate()
-    const [showTextInputModal, setShowTextInputModal] = useState(false);
-   
+
 
     function closeEditor() {
         setShowEditor(false)
@@ -39,10 +38,7 @@ export function SideBar({ users }) {
     }
 
 // 
-    const handleNextButtonClick = () => {
-        handleAddStory();
-        setShowTextInputModal(true);
-      };
+   
 //   
    
     // 
@@ -61,14 +57,18 @@ export function SideBar({ users }) {
         try {
             const savedStory = await addStory(story)
             showSuccessMsg(`Story added (id: ${savedStory._id})`)
+            setText(''); // Reset the text input
+            setUploadedImage('')
+            
         } catch (err) {
             showErrorMsg('Cannot add story')
         }
     }
-
-
+    
+    
     function onUploaded(imgUrl) {
-        setUploadedImage([...uploadedImage, imgUrl]);
+        setUploadedImage([...uploadedImage, imgUrl])
+        
     }
 
 
@@ -87,9 +87,11 @@ export function SideBar({ users }) {
 
 
     return (
-
         <div className="main-side-bar ">
+        
 
+        
+  
             <div className="side-bar-logo">
 
                 <NavLink to="/stories"><img src={logo} className="desc-logo" alt="Logo" /><span className="inst-logo">{instaIcon}</span></NavLink>
