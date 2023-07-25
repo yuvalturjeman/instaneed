@@ -17,7 +17,8 @@ export function SideBar({ users }) {
     const [text, setText] = useState('');
     const [uploadedImage, setUploadedImage] = useState([]);
     const navigate = useNavigate()
-
+    const [showTextInputModal, setShowTextInputModal] = useState(false);
+   
 
     function closeEditor() {
         setShowEditor(false)
@@ -37,10 +38,14 @@ export function SideBar({ users }) {
         closeModal()
     }
 
-
-    // function onLogout() {
-
-    // }
+// 
+    const handleNextButtonClick = () => {
+        handleAddStory();
+        setShowTextInputModal(true);
+      };
+//   
+   
+    // 
 
     async function handleAddStory() {
 
@@ -160,6 +165,7 @@ export function SideBar({ users }) {
                                     <a onClick={closeEditor}>Cancel</a>
                                     <span>Edit info</span>
                                     <a onClick={handleAddStory} >Done</a>
+                                    {/* <a onClick={handleNextButtonClick}>Next</a> */}
                                 </header>
                                 <div className="editor-main">
                                     <div className="img-editor">
@@ -167,7 +173,7 @@ export function SideBar({ users }) {
                                         <ImgUploader onUploaded={onUploaded} initialImgUrl='' />
                                     </div>
 
-                                    {/* <div className="text-editor">
+                                    <div className="text-editor">
 
                                         <label htmlFor="text">
 
@@ -180,7 +186,7 @@ export function SideBar({ users }) {
                                             />
                                         </label>
 
-                                    </div> */}
+                                    </div>
 
 
                                 </div>

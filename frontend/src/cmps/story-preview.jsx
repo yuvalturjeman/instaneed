@@ -14,8 +14,8 @@ export function StoryPreview({ story, onRemoveStory, onUpdateStory }) {
   console.log('story', story);
   const navigate = useNavigate()
   const [showAllComments, setShowAllComments] = useState(false);
-  const [showTextInputModal, setShowTextInputModal] = useState(false);
-
+  // 
+ 
   const [newText, setNewText] = useState('');
 
 
@@ -43,14 +43,7 @@ export function StoryPreview({ story, onRemoveStory, onUpdateStory }) {
     closeModal()
   }
 
-  // 
-  const handleNextButtonClick = () => {
-    // Save the uploaded image before showing the text input modal
-    handleUpdateStory();
-    setShowTextInputModal(true);
-  };
 
-  // 
   const handleUpdateStory = () => {
     const updatedStory = { ...story, txt: newText, imgUrls: uploadedImage ? [uploadedImage, ...story.imgUrls] : story.imgUrls };
     onUpdateStory(updatedStory);
@@ -139,7 +132,7 @@ export function StoryPreview({ story, onRemoveStory, onUpdateStory }) {
                   <a onClick={closeEditor}>Cancel</a>
                   <span>Edit info</span>
                   <a onClick={() => { onUpdateStory(story._id) }}>Done</a>
-                  {/* <a onClick={handleNextButtonClick}>Next</a> */}
+                  
                 </header>
                 <div className="editor-main">
                   <div className="img-editor">
