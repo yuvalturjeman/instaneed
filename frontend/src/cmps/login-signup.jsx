@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { userService } from '../services/user.service'
 import { login, signup } from '../store/user.actions.js'
 import { useNavigate } from "react-router-dom";
-
+import logo from '../assets/img/logo.png'
 export function LoginSignup() {
     const [credentials, setCredentials] = useState(userService.getEmptyUser())
     const [isSignup, setIsSignup] = useState(false)
@@ -79,7 +79,7 @@ export function LoginSignup() {
             <div className="login-page">
                 <div className='login-container'>
                     <div className="logo">
-                        <p>InstaNeed</p>
+                        <img src={logo} alt="" />
                     </div>
 
 
