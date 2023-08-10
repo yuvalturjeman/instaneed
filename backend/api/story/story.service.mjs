@@ -6,17 +6,17 @@ const { ObjectId } = mongodb
 
 const PAGE_SIZE = 3
 
-async function query(filterBy={txt:''}) {
+async function query() {
     try {
-        const criteria = {
-            txt: { $regex: filterBy.txt, $options: 'i' }
-        }
+        // const criteria = {
+        //     txt: { $regex: filterBy.txt, $options: 'i' }
+        // }
         const collection = await dbService.getCollection('story')
-        var storyCursor = await collection.find(criteria)
+        var storyCursor = await collection.find()
 
-        if (filterBy.pageIdx !== undefined) {
-            storyCursor.skip(filterBy.pageIdx * PAGE_SIZE).limit(PAGE_SIZE)     
-        }
+        // if (filterBy.pageIdx !== undefined) {
+        //     storyCursor.skip(filterBy.pageIdx * PAGE_SIZE).limit(PAGE_SIZE)     
+        // }
 
         const stories = storyCursor.toArray()
         return stories
@@ -40,7 +40,7 @@ async function getById(storyId) {
 async function remove(storyId) {
     try {
         const collection = await dbService.getCollection('story')
-        await collection.deleteOne({ _id: storyId })
+        await collection.deleteOne({ _id: ObjectId(storyId) })
         return storyId
     } catch (err) {
         logger.error(`cannot remove story ${storyId}`, err)
@@ -69,7 +69,7 @@ async function update(story) {
         await collection.updateOne({ _id: story._id }, { $set: storyToSave })
         return story
     } catch (err) {
-        logger.error(`cannot update stay ${story.id}`, err)
+        logger.error(`cannot update story ${story.id}`, err)
         throw err
     }
 }

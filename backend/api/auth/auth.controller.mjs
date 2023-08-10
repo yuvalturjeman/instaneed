@@ -20,12 +20,12 @@ export async function signup(req, res) {
         const credentials = req.body
         // Never log passwords
         // logger.debug(credentials)
-        const account = await authService.signup({...credentials})
+        const user = await authService.signup(credentials)
         logger.debug(`auth.route - new account created: ` + JSON.stringify(account))
-        const user = await authService.login(credentials.username, credentials.password)
+        // const user = await authService.login(credentials.username, credentials.password)
         logger.info('User signup:', user)
-        const loginToken = authService.getLoginToken(user)
-        res.cookie('loginToken', loginToken) // {sameSite: 'None', secure: true})
+        // const loginToken = authService.getLoginToken(user)
+        // res.cookie('loginToken', loginToken) // {sameSite: 'None', secure: true})
         res.json(user)
     } catch (err) {
         logger.error('Failed to signup ' + err)

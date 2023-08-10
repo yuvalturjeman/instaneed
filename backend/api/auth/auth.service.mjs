@@ -18,6 +18,8 @@ async function login(username, password) {
 
     const user = await userService.getByUsername(username)
     if (!user) return Promise.reject('Invalid username or password')
+
+    const match = await bcrypt.compare(password, user.password)
  
 
     delete user.password
@@ -25,7 +27,7 @@ async function login(username, password) {
     return user
 }
 
-async function signup(credentials) {
+async function signup({ username, password, fullname }) {
     const saltRounds = 10
 
     logger.debug(`auth.service - signup with username: ${username}, fullname: ${fullname}`)
@@ -34,12 +36,12 @@ async function signup(credentials) {
     const userExist = await userService.getByUsername(username)
     if (userExist) return Promise.reject('Username already taken')
 
-     Credential.password = await bcrypt.hash(password, saltRounds)
-    return userService.add(Credential)
+    const hash = await bcrypt.hash(password, saltRounds)
+    return userService.add({ username, password: hash, fullname })
 }
 
 function getLoginToken(user) {
-    const userInfo = {_id : user._id, fullname: user.fullname, isAdmin: user.isAdmin}
+    const userInfo = {_id : user._id, fullname: user.fullname, username: user.username, userImg: user.userImg}
     return cryptr.encrypt(JSON.stringify(userInfo))    
 }
 

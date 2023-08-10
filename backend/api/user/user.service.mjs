@@ -56,7 +56,7 @@ async function getByUsername(username) {
 async function remove(userId) {
     try {
         const collection = await dbService.getCollection('user')
-        await collection.deleteOne({ _id: ObjectId(userId) })
+        return await collection.deleteOne({ _id: ObjectId(userId) })
     } catch (err) {
         logger.error(`cannot remove user ${userId}`, err)
         throw err
@@ -70,11 +70,14 @@ async function update(user) {
             _id: ObjectId(user._id), // needed for the returnd obj
             fullname: user.fullname,
             username: user.username,
-            imgUrl: user.imgUrl
+            userImg: user.userImg,
+            savedStories: user.savedStories,
+            taggedStories: user.taggedStories,
+            userStories: user.userStories
 
         }
         const collection = await dbService.getCollection('user')
-        await collection.updateOne({ _id: userToSave._id }, { $set: userToSave })
+        await collection.updateOne({ _id: ObjectId(user._id) }, { $set: userToSave })
         return userToSave
     } catch (err) {
         logger.error(`cannot update user ${user._id}`, err)
@@ -89,7 +92,10 @@ async function add(user) {
             username: user.username,
             password: user.password,
             fullname: user.fullname,
-            imgUrl: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
+            userImg: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
+            savedStories: [],
+            taggedStories: [],
+            userStories: []
 
         }
         const collection = await dbService.getCollection('user')

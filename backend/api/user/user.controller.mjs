@@ -1,7 +1,7 @@
 import {userService} from './user.service.mjs'
 import {logger} from '../../services/logger.service.mjs'
-import {socketService} from '../../services/socket.service.mjs'
-import { logout } from '../auth/auth.controller.mjs'
+// import {socketService} from '../../services/socket.service.mjs'
+// import { logout } from '../auth/auth.controller.mjs'
 
 export async function getUser(req, res) {
     try {
