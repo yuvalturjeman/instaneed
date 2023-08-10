@@ -58,7 +58,6 @@ async function save(story) {
 function getEmptyStory() {
   const user = userService.getLoggedinUser() ? userService.getLoggedinUser() : userService._createGuest()
   return {
-    _id:"",
       txt: "",
     imgUrls: "",
     by: userService.getLoggedinUser(),
@@ -97,8 +96,8 @@ function getEmptyComment() {
   return {
     _id: utilService.makeId(),
     by: {
-      username: (!userService.getLoggedinUser()) ? 'guest' : userService.getLoggedinUser().username,
-      userImg: (!userService.getLoggedinUser()) ? 'none' : userService.getLoggedinUser().userImg
+      username: userService.getLoggedinUser().username,
+      userImg:  userService.getLoggedinUser().userImg
     },
     txt: "",
     likedBy: []

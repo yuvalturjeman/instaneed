@@ -4,8 +4,8 @@ import { httpService } from './http.service.js'
 import { userService } from './user.service.js'
 import { utilService } from './util.service.js'
 
-
-const STORAGE_KEY = 'story'
+const BASE_URL = 'story'
+// const STORAGE_KEY = 'story'
 
 export const storyService = {
     query,
@@ -21,7 +21,7 @@ export const storyService = {
 window.cs = storyService
 
 
-async function query(filterBy = { txt: '' }) {
+async function query(filterBy = { by: '' }) {
     return httpService.get('story/', filterBy)
 }
 
@@ -38,7 +38,7 @@ async function save(story, loggedinUser) {
         savedStory = await httpService.put(`story/${story._id}`, {story, loggedinUser})
 
     } else {
-        savedStory = await httpService.post('story', {story, loggedinUser})
+        savedStory = await httpService.post(`story/`, {story, loggedinUser})
     }
     return savedStory
 }
@@ -60,31 +60,6 @@ async function removeStoryComment(storyId, commentId) {
     return savedComment
 }
 
-// function getDefaultFilter() {
-//     return { txt: ''}
-// }
-
-// function getEmptyStory() {
-
-
-
-//     return {
-//         _id: utilService.makeId(),
-//         txt: "",
-//         imgUrls:"https://images.pexels.com/photos/17243147/pexels-photo-17243147.jpeg?auto=compress&cs=tinysrgb&w=600",
-//         by:{
-//           _id: utilService.makeId(),
-//           fullname: "Guest",
-//           username: "Guest",
-//           userImg:"https://images.pexels.com/photos/17243147/pexels-photo-17243147.jpeg?auto=compress&cs=tinysrgb&w=600",
-  
-//         },
-//         comments: [],
-//         likedBy:[]
-//     }
-//   }
- 
-  
 function getEmptyStory() {
     return {
         txt: '',
