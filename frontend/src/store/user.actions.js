@@ -5,7 +5,7 @@ import { store } from '../store/store.js'
 
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { LOADING_DONE, LOADING_START } from "./system.reducer.js";
-import {NEW_NOTIFICATION, ADD_USER ,REMOVE_USER, SET_USER, SET_USERS,SET_LOGGEDIN_USER ,SET_WATCHED_USER, UPDATE_USER } from "./user.reducer.js";
+import {NEW_NOTIFICATION, ADD_USER ,REMOVE_USER, SET_USER, SET_USERS, SET_LOGGEDIN_USER ,SET_WATCHED_USER, UPDATE_USER } from "./user.reducer.js";
 
 export async function loadUsers(filterBy = { txt: '' }) {
     try {
