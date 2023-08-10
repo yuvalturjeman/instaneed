@@ -108,8 +108,11 @@ function getEmptyUser() {
         fullName: "",
         username: "",
         password: "",
-        imgUrl: { url: 'https://res.cloudinary.com/duxmabf4n/image/upload/v1686594941/p5igjah3vvmmfpdhs2e5.jpg'},
-        userStories: [] //not in the starter
+        userImg: 'https://res.cloudinary.com/duxmabf4n/image/upload/v1686594941/p5igjah3vvmmfpdhs2e5.jpg',
+        userStories: [],
+        savedStories: [],
+        taggedStories: [],
+
     }
 }
 

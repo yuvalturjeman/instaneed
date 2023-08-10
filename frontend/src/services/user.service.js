@@ -4,13 +4,14 @@ import users from '../data/backup-users.json'
 import userDefault from '../assets/img/user-default.jpg'
 import { httpService } from './http.service.js'
 import { socketService } from './socket.service.js'
+// import userDefault from '../assets/img/user-default.jpg'
 export const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
 const STORAGE_KEY_USERS = 'users'
-const STORAGE_KEY_GUEST = 'guest'
-let gUsers
+// const STORAGE_KEY_GUEST = 'guest'
+// let gUsers
 // const STORAGE_KEY = 'userDB'
 
-_createUsers()
+// _createUsers()
 
 export const userService = {
     login,
@@ -25,7 +26,7 @@ export const userService = {
     getUsers,
     queryComments,
     getCommentById,
-    getEmptyCredentials,
+    getEmptyCreds,
     // getShortUserInfo,
     _createGuest,
     saveUser,
@@ -53,17 +54,17 @@ async function update({ _id, user }) {
     return updatedUser
 }
 
-function saveLocalUser(user) {
-    localStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
-    return user
-}
-
-// changed with the above
 // function saveLocalUser(user) {
-//     user = { _id: user._id, username: user.username, imgUrl: user.imgUrl }
-//     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+//     localStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
 //     return user
 // }
+
+// changed with the above
+function saveLocalUser(user) {
+    user = { _id: user._id, username: user.username, imgUrl: user.imgUrl }
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    return user
+}
 
 
 
@@ -78,8 +79,8 @@ async function saveUser(user) {
     return savedUser
 }
 
-function getUsers() {
-    return storageService.query(STORAGE_KEY_USERS, users)
+function getUsers(filterBy = { txt: '' }) {
+    return httpService.get(`user`, filterBy)
 }
 
 // changed with the above
@@ -87,36 +88,36 @@ function getUsers() {
 //     return httpService.get(`user`, filterBy)
 // }
 
-async function login({ username, password }) {
-    const user = await getByUserName(username)
-    console.log('user.password', user.password)
-    console.log('password', password)
-    if (user.password === password) {
-        console.log('username', user)
-        _setLoggedinUser(user)
-        return user
-    }
-}
-
-// changed with the above
-// async function login(userCred) {
-//  const user = await httpService.post('auth/login', userCred)
-//     if (user) {
-//         return saveLocalUser(user)
+// async function login({ username, password }) {
+//     const user = await getByUserName(username)
+//     console.log('user.password', user.password)
+//     console.log('password', password)
+//     if (user.password === password) {
+//         console.log('username', user)
+//         _setLoggedinUser(user)
+//         return user
 //     }
 // }
 
-function signup(user) {
-    return storageService.post(STORAGE_KEY_USERS, user)
-        .then(_setLoggedinUser)
+// changed with the above
+async function login(userCred) {
+ const user = await httpService.post('auth/login', userCred)
+    if (user) {
+        return saveLocalUser(user)
+    }
 }
 
-// changed with the above
-// async function signup(userCred) {
-//     const user = await httpService.post('auth/signup', userCred)
-//     // socketService.login(user._id)
-//     return saveLocalUser(user)
+// function signup(user) {
+//     return storageService.post(STORAGE_KEY_USERS, user)
+//         .then(_setLoggedinUser)
 // }
+
+// changed with the above
+async function signup(userCred) {
+    const user = await httpService.post('auth/signup', userCred)
+    // socketService.login(user._id)
+    return saveLocalUser(user)
+}
 
 async function getByUserName(username) {
     const users = await query()
@@ -124,15 +125,15 @@ async function getByUserName(username) {
     return user[0]
 }
 
-async function logout() {
-    storageService.removeUserFromLocalStorage()
-}
+// async function logout() {
+//     storageService.removeUserFromLocalStorage()
+// }
 
 // changed with the above
-// async function logout() {
-//     socketService.logout()
-//     return await httpService.post('auth/logout')
-// }
+async function logout() {
+    socketService.logout()
+    return await httpService.post('auth/logout')
+}
 
 
 async function query() {
@@ -142,19 +143,19 @@ async function query() {
 
 
 
-function getById(userId) {
-    return storageService.get(STORAGE_KEY_USERS, userId)
-}
+// function getById(userId) {
+//     return storageService.get(STORAGE_KEY_USERS, userId)
+// }
 
 
 // changed with the above
-// async function getById(userId) {
-//     const user = await httpService.get(`user/${userId}`)
-//     return user
-// }
+async function getById(userId) {
+    const user = await httpService.get(`user/${userId}`)
+    return user
+}
 
 async function remove(userId) {
-    await storageService.remove(STORAGE_KEY_USERS, userId)
+    return httpService.delete(`user/${userId}`)
 }
 
 // changed with the above
@@ -163,8 +164,11 @@ async function remove(userId) {
 // }
 
 
+// function getLoggedinUser() {
+//     return utilService.loadFromStorage(STORAGE_KEY_LOGGEDIN_USER)
+// }
 function getLoggedinUser() {
-    return utilService.loadFromStorage(STORAGE_KEY_LOGGEDIN_USER)
+    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
 function getEmptyUser() {
@@ -173,7 +177,10 @@ function getEmptyUser() {
         username: "",
         password: "",
         // imgUrl:  'https://res.cloudinary.com/duxmabf4n/image/upload/v1686594941/p5igjah3vvmmfpdhs2e5.jpg',
-        imgUrl:  'https://res.cloudinary.com/duxmabf4n/image/upload/v1686594941/p5igjah3vvmmfpdhs2e5.jpg',
+        userImg:  {userDefault},
+         savedStories: [],
+        taggedStories: [],
+        userStories: []
     }
 }
 
@@ -188,7 +195,7 @@ function getCommentById(userId, commentId) {
     return comments.filter(comment => comment._id === commentId)
 }
 
-function getEmptyCredentials() {
+function getEmptyCreds() {
     return {
         username: '',
         password: '',
@@ -200,14 +207,14 @@ function getEmptyCredentials() {
 
 
 
-function _createUsers() {
-    gUsers = utilService.loadFromStorage(STORAGE_KEY_USERS)
-    console.log('storedUsers',gUsers);
-    if (gUsers && gUsers.length > 0) return
-    gUsers = users
+// function _createUsers() {
+//     gUsers = utilService.loadFromStorage(STORAGE_KEY_USERS)
+//     console.log('storedUsers',gUsers);
+//     if (gUsers && gUsers.length > 0) return
+//     gUsers = users
 
-    _saveUsers(STORAGE_KEY_USERS, users)
-}
+//     _saveUsers(STORAGE_KEY_USERS, users)
+// }
 
 function _createGuest() {
     return {
@@ -215,7 +222,7 @@ function _createGuest() {
             username: "Guest",
             fullname: "Guest",
             password: "1234",
-            imgUrl: userDefault
+            userImg: userDefault
 
         }   
 }
@@ -229,5 +236,4 @@ function _setLoggedinUser(user) {
     utilService.saveToStorage(STORAGE_KEY_LOGGEDIN_USER, user)
     return user
 }
-
 

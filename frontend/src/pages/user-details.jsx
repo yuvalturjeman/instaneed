@@ -40,7 +40,7 @@ export function UserDetails() {
     }
 
     const handleUpdateUser = () => {
-        const updatedUser = { ...user, imgUrl: uploadedImage ? [uploadedImage, ...user.imgUrl] : user.imgUrl };
+        const updatedUser = { ...user, userImg: uploadedImage ? [uploadedImage, ...user.userImg] : user.userImg };
         onUpdateUser(updatedUser);
         
     
@@ -63,7 +63,7 @@ export function UserDetails() {
             <div className="profile-container-page">
 
             <head className='user-details'>
-                {user.imgUrl && (
+                {user.userImg && (
                     <section className="profile-photo">
                         <img src={UserDefault} />
                     </section>

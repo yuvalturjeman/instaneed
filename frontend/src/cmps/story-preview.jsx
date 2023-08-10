@@ -103,7 +103,7 @@ export function StoryPreview({ story, onRemoveStory, onUpdateStory }) {
     >
       <div className="story-preview header">
         <div className="user-info">
-          <img className="user-img" src={`${story.by.imgUrl}`} alt="" />
+          <img className="user-img" src={`${story.by.userImg}`} alt="" />
           <span className="user-name">{`${story.by.fullname}`}</span>
           <a className="dots" onClick={openModal}>{dotsIcon}</a>
 

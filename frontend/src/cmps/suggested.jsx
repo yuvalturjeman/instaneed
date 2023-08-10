@@ -30,7 +30,7 @@ export function Suggested({ users }) {
                         
                     <Link to={`/users/:user/:${loggedUser._id}`} >
                         <div className="logged-user-info">
-                            {loggedUser.imgUrl && <span><img className="suggested-logged-img" src={loggedUser.imgUrl} /></span>}
+                            {loggedUser.userImg && <span><img className="suggested-logged-img" src={loggedUser.userImg} /></span>}
                         <p className="suggested-logged-name">{loggedUser.fullname}</p>
                         </div>
                     </Link>

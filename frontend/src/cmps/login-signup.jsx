@@ -17,9 +17,9 @@ export function LoginSignup() {
 
     
 
-    async function Login(credentials) {
+    async function Login(userCred) {
         try {
-            const user = await login(credentials)
+            const user = await login(userCred)
             navigate('/stories')
             console.log('USER FROM LOGIN', user)
 
@@ -29,10 +29,10 @@ export function LoginSignup() {
         }
     }
 
-    async function Signup(credentials) {
+    async function Signup(userCred) {
         try {
             navigate('/stories')
-            const user = await signup(credentials)
+            const user = await signup(userCred)
             console.log('USER FROM SIGN UP', user)
         } catch (err) {
             console.log(err)

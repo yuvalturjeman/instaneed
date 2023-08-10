@@ -2,7 +2,7 @@ import { storyService } from "../services/story.service.local.js";
 import { userService } from "../services/user.service.js";
 import { store } from './store.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { ADD_STORY, ADD_TO_CART, CLEAR_CART, REMOVE_STORY, REMOVE_FROM_CART, SET_STORIES, UNDO_REMOVE_STORY, UPDATE_STORY,TOGGLE_LIKE } from "./story.reducer.js";
+import { ADD_STORY, REMOVE_STORY, SET_STORIES, UPDATE_STORY} from "./story.reducer.js";
 import { SET_SCORE } from "./user.reducer.js";
 
 // Action Creators:
@@ -25,10 +25,9 @@ export function getActionUpdateStory(story) {
     }
 }
 
-export async function loadStories(filterBy) {
-    console.log('filterBy:   ',  filterBy )
+export async function loadStories() {
     try {
-        const stories = await storyService.query(filterBy)
+        const stories = await storyService.query()
         console.log('Stories from DB:', stories)
         store.dispatch({
             type: SET_STORIES,
@@ -64,64 +63,63 @@ export async function addStory(story) {
     }
 }
 
-export function updateStory(story) {
-    return storyService.save(story)
-        .then(savedStory => {
-            console.log('Updated Story:', savedStory)
-            store.dispatch(getActionUpdateStory(savedStory))
+export async function updateStory(story, user) {
+    try {
+   const savedStory= await storyService.save(story, user)
+   store.dispatch({type: UPDATE_STORY, story})
+
             return savedStory
-        })
-        .catch(err => {
+        } catch(err) {
             console.log('Cannot save story', err)
             throw err
-        })
+        }
 }
 
-export function addToCart(story) {
-    store.dispatch({
-        type: ADD_TO_CART,
-        story
-    })
-}
+// export function addToCart(story) {
+//     store.dispatch({
+//         type: ADD_TO_CART,
+//         story
+//     })
+// }
 
-export function removeFromCart(storyId) {
-    store.dispatch({
-        type: REMOVE_FROM_CART,
-        storyId
-    })
-}
+// export function removeFromCart(storyId) {
+//     store.dispatch({
+//         type: REMOVE_FROM_CART,
+//         storyId
+//     })
+// }
 
-export async function checkout(total) {
-    try {
-        const score = await userService.changeScore(-total)
-        store.dispatch({ type: SET_SCORE, score })
-        store.dispatch({ type: CLEAR_CART })
-        return score
-    } catch (err) {
-        console.log('StoryActions: err in checkout', err)
-        throw err
-    }
-}
+// export async function checkout(total) {
+//     try {
+//         const score = await userService.changeScore(-total)
+//         store.dispatch({ type: SET_SCORE, score })
+//         store.dispatch({ type: CLEAR_CART })
+//         return score
+//     } catch (err) {
+//         console.log('StoryActions: err in checkout', err)
+//         throw err
+//     }
+// }
 
 
-export function onRemoveStoryOptimistic(storyId) {
-    store.dispatch({
-        type: REMOVE_STORY,
-        storyId
-    })
-    showSuccessMsg('Story removed')
+// export function onRemoveStoryOptimistic(storyId) {
+//     store.dispatch({
+//         type: REMOVE_STORY,
+//         storyId
+//     })
+//     showSuccessMsg('Story removed')
 
-    storyService.remove(storyId)
-        .then(() => {
-            console.log('Server Reported - Deleted Succesfully');
-        })
-        .catch(err => {
-            showErrorMsg('Cannot remove story')
-            console.log('Cannot load storys', err)
-            store.dispatch({
-                type: UNDO_REMOVE_STORY,
-            })
-        })
-}
+//     storyService.remove(storyId)
+//         .then(() => {
+//             console.log('Server Reported - Deleted Succesfully');
+//         })
+//         .catch(err => {
+//             showErrorMsg('Cannot remove story')
+//             console.log('Cannot load storys', err)
+//             store.dispatch({
+//                 type: UNDO_REMOVE_STORY,
+//             })
+//         })
+// }
 
 

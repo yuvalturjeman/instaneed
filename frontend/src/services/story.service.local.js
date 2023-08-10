@@ -2,7 +2,8 @@
 import { storageService } from './async-storage.service.js'
 import stories from '../data/backup-stories.json'
 import { utilService } from './util.service.js'
-import { userService } from './user.service.js'
+import { STORAGE_KEY_LOGGEDIN_USER, userService } from './user.service.js'
+
 
 const STORAGE_KEY = 'story'
 let gStories
@@ -31,7 +32,12 @@ async function query() {
 
 
 function getById(storyId) {
-  return storageService.get(STORAGE_KEY, storyId)
+  try {
+    return storageService.get(STORAGE_KEY, storyId)
+  } catch (error) {
+    console.log(`could not get story with ${storyId}`)
+}
+
 }
 
 async function remove(storyId) {
@@ -55,12 +61,7 @@ function getEmptyStory() {
     _id:"",
       txt: "",
     imgUrls: "",
-    by: {
-      _id: user._id,
-            fullname: user.fullname,
-            username: user.username,
-            imgUrl: user.imgUrl
-        },
+    by: userService.getLoggedinUser(),
         comments: [],
         likes:[]
     }
@@ -97,7 +98,7 @@ function getEmptyComment() {
     _id: utilService.makeId(),
     by: {
       username: (!userService.getLoggedinUser()) ? 'guest' : userService.getLoggedinUser().username,
-      imgUrl: (!userService.getLoggedinUser()) ? 'none' : userService.getLoggedinUser().imgUrl
+      userImg: (!userService.getLoggedinUser()) ? 'none' : userService.getLoggedinUser().userImg
     },
     txt: "",
     likedBy: []
@@ -112,5 +113,5 @@ function _createStories() {
 }
 
 function _saveStories() {
-  utilService.saveToStorage(STORAGE_KEY, stories)
+  utilService.saveToStorage(STORAGE_KEY, gStories)
 }

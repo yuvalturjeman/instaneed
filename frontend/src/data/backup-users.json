@@ -4,49 +4,49 @@
         "fullname": "Dudi Udi",
         "username": "Dudiu",
         "password": "bubo",
-        "imgUrl": "https://images.pexels.com/photos/17239929/pexels-photo-17239929.jpeg?auto=compress&cs=tinysrgb&w=600"
+        "userImg": "https://images.pexels.com/photos/17239929/pexels-photo-17239929.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         "_id": "u105",
         "fullname": "Bobo Ubo",
         "username": "bubuou",
         "password": "bubo",
-        "imgUrl": "https://images.pexels.com/photos/17153146/pexels-photo-17153146.jpeg?auto=compress&cs=tinysrgb&w=100"
+        "userImg": "https://images.pexels.com/photos/17153146/pexels-photo-17153146.jpeg?auto=compress&cs=tinysrgb&w=100"
     },
     {
         "_id": "u106",
         "fullname": "Guko_gok",
         "username": "gukoG",
         "password": "guk",
-        "imgUrl": "https://images.pexels.com/photos/17239929/pexels-photo-17239929.jpeg?auto=compress&cs=tinysrgb&w=600"
+        "userImg": "https://images.pexels.com/photos/17239929/pexels-photo-17239929.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         "_id": "u107",
         "fullname": "alby_baba",
         "username": "albyba",
         "password": "guk",
-        "imgUrl": "https://images.pexels.com/photos/17239929/pexels-photo-17239929.jpeg?auto=compress&cs=tinysrgb&w=600"
+        "userImg": "https://images.pexels.com/photos/17239929/pexels-photo-17239929.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         "_id": "u109",
         "fullname": "Laura Laoren",
         "username": "laura_len",
         "password": "laura",
-        "imgUrl": "https://images.pexels.com/photos/17239929/pexels-photo-17239929.jpeg?auto=compress&cs=tinysrgb&w=600"
+        "userImg": "https://images.pexels.com/photos/17239929/pexels-photo-17239929.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         "_id": "u112",
         "fullname": "Davit Pok",
         "username": "davitp",
         "password": "davit",
-        "imgUrl": "https://images.pexels.com/photos/17243147/pexels-photo-17243147.jpeg?auto=compress&cs=tinysrgb&w=600"
+        "userImg": "https://images.pexels.com/photos/17243147/pexels-photo-17243147.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
         "_id": "u115",
         "fullname": "Uki Muki",
         "username": "Ukimm",
         "password": "uki",
-        "imgUrl": "https://images.pexels.com/photos/17153146/pexels-photo-17153146.jpeg?auto=compress&cs=tinysrgb&w=100"
+        "userImg": "https://images.pexels.com/photos/17153146/pexels-photo-17153146.jpeg?auto=compress&cs=tinysrgb&w=100"
     }
    
 ]

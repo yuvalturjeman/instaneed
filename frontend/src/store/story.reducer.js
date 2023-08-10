@@ -4,10 +4,6 @@ export const SET_STORIES = 'SET_STORIES'
 export const REMOVE_STORY = 'REMOVE_STORY'
 export const ADD_STORY = 'ADD_STORY'
 export const UPDATE_STORY = 'UPDATE_STORY'
-export const ADD_TO_CART = 'ADD_TO_CART'
-export const CLEAR_CART = 'CLEAR_CART'
-export const UNDO_REMOVE_STORY = 'UNDO_REMOVE_STORY'
-export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 export const FILTER_BY = 'FILTER_BY'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const TOGGLE_LIKE = 'TOGGLE_LIKE'
@@ -41,24 +37,6 @@ export function storyReducer(state = initialState, action) {
      
         case FILTER_BY:
             newState = { ...state, filterBy: action.filterToEdit }
-            break
-            case TOGGLE_LIKE:
-            const user = action.payload.user
-            const story = action.payload.story
-            
-            const storyIndex = state.stories.findIndex((s) => s._id === story._id)
-            const currentLikes = story.likedBy
-            const isLiked = currentLikes.some((u) => u._id === user._id)
-            const likedBy = isLiked ? currentLikes.filter((u) => u._id !== user._id) : [...currentLikes, user]
-            const newStory = { ...story, likedBy }
-            newState = {
-                ...state,
-                stories: [
-                    ...state.stories.slice(0, storyIndex),
-                    newStory,
-                    ...state.stories.slice(storyIndex + 1)
-                ]
-            }
             break
 
         default:
